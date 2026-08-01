@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div id="particles-container"></div>
+    <div class="aurora"></div>
+
+    <!-- Heart Drawing Canvas -->
+    <canvas id="heart-canvas"></canvas>
+
+    <!-- Music Player -->
+    <div class="music-player glass">
+        <button id="play-btn" class="icon-btn">▶️</button>
+        <div class="music-info">
+            <span class="music-title">Our Song</span>
+            <div class="progress-bar-container">
+                <div class="progress" id="music-progress"></div>
+            </div>
+        </div>
+        <audio id="bg-music" loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=romantic-piano-110058.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- 1. Hero Section -->
+    <section id="hero" class="section">
+        <div class="hero-content glass-panel animate-on-load">
+            <h1 class="hero-title">Will You Be My Valentine?</h1>
+            <p class="hero-quote">"Every love story is beautiful, but ours is my favorite."</p>
+            <button id="open-envelope-btn" class="btn primary-btn">Open My Heart ❤️</button>
+        </div>
+    </section>
+
+    <!-- 2. Love Letter Animation -->
+    <section id="letter-section" class="section hidden">
+        <div class="envelope-container">
+            <div class="envelope" id="envelope">
+                <div class="flap"></div>
+                <div class="letter">
+                    <p id="typing-text"></p>
+                </div>
+                <div class="envelope-front"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Interactive Timeline -->
+    <section id="timeline-section" class="section hidden">
+        <h2 class="section-title">Our Beautiful Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-icon">🌟</div>
+                <div class="timeline-content glass-panel">
+                    <h3>First Met</h3>
+                    <p>The day my world became brighter.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">☕</div>
+                <div class="timeline-content glass-panel">
+                    <h3>First Date</h3>
+                    <p>Nervous smiles and endless conversations.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">💋</div>
+                <div class="timeline-content glass-panel">
+                    <h3>First Kiss</h3>
+                    <p>A moment frozen in time.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">💍</div>
+                <div class="timeline-content glass-panel">
+                    <h3>Today</h3>
+                    <p>Falling more in love every day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Memory Gallery -->
+    <section id="gallery-section" class="section hidden">
+        <h2 class="section-title">Precious Memories</h2>
+        <div class="gallery">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" alt="Memory 1"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80" alt="Memory 2"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=600&q=80" alt="Memory 3"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1518599904199-0ca897819ddb?auto=format&fit=crop&w=600&q=80" alt="Memory 4"></div>
+        </div>
+        
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox">
+            <span class="close-lightbox">&times;</span>
+            <img id="lightbox-img" src="" alt="Enlarged Memory">
+        </div>
+    </section>
+
+    <!-- 5. Love Counter -->
+    <section id="counter-section" class="section hidden">
+        <div class="glass-panel text-center w-full max-w-4xl">
+            <h2 class="section-title">We've been in love for</h2>
+            <div id="love-counter" class="counter-grid">
+                <div class="time-box"><span id="c-years">0</span><p>Years</p></div>
+                <div class="time-box"><span id="c-months">0</span><p>Months</p></div>
+                <div class="time-box"><span id="c-days">0</span><p>Days</p></div>
+                <div class="time-box"><span id="c-hours">0</span><p>Hours</p></div>
+                <div class="time-box"><span id="c-mins">0</span><p>Mins</p></div>
+                <div class="time-box"><span id="c-secs">0</span><p>Secs</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Reasons Why I Love You -->
+    <section id="reasons-section" class="section hidden">
+        <h2 class="section-title">Reasons I Love You</h2>
+        <div class="reasons-grid" id="reasons-grid">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- 7. Compliment Generator -->
+    <section id="compliment-section" class="section hidden">
+        <div class="glass-panel text-center p-xl">
+            <h2 class="section-title">A Sweet Note Just For You</h2>
+            <p id="compliment-text" class="compliment-display">"You are my sunshine."</p>
+            <button id="compliment-btn" class="btn secondary-btn">Tell Me Something Else</button>
+        </div>
+    </section>
+
+    <!-- 8. Love Quiz -->
+    <section id="quiz-section" class="section hidden">
+        <h2 class="section-title">How well do you know us?</h2>
+        <div class="quiz-container glass-panel">
+            <h3 id="question-text">Where was our first date?</h3>
+            <div class="options" id="quiz-options">
+                <!-- Populated by JS -->
+            </div>
+            <div class="progress-bar-container mt-lg">
+                <div class="progress" id="quiz-progress"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Proposal Section -->
+    <section id="proposal-section" class="section hidden">
+        <h1 class="proposal-title">Will You Be Mine Forever?</h1>
+        <div class="proposal-buttons">
+            <button id="yes-btn" class="btn yes-btn">YES ❤️</button>
+            <button id="no-btn" class="btn no-btn">NO 😅</button>
+        </div>
+    </section>
+
+    <!-- 10. Surprise Gift -->
+    <section id="gift-section" class="section hidden">
+        <h2 class="section-title">A Special Surprise</h2>
+        <div class="gift-container">
+            <div class="gift-box" id="gift-box">
+                <div class="gift-lid"></div>
+                <div class="gift-body">🎁</div>
+            </div>
+            <div id="gift-content" class="gift-content hidden-content">
+                <div class="gift-items">🧸 💐 🍫 💍</div>
+                <p class="gift-message">You mean everything to me! Happy Valentine's Day!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 17. Countdown -->
+    <section id="countdown-section" class="section hidden">
+        <div class="glass-panel text-center">
+            <h2 class="section-title">Next Valentine's Day In</h2>
+            <div id="vday-countdown" class="counter-grid small">
+                <div class="time-box"><span id="v-days">0</span><p>Days</p></div>
+                <div class="time-box"><span id="v-hours">0</span><p>Hours</p></div>
+                <div class="time-box"><span id="v-mins">0</span><p>Mins</p></div>
+                <div class="time-box"><span id="v-secs">0</span><p>Secs</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 18. Footer -->
+    <footer>
+        <p class="footer-text">Made with ❤️ for You</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
